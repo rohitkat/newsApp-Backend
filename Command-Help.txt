@@ -1,0 +1,10 @@
+Commands 
+1. Create Migration - npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli migration:generate -d src/data-source.ts src/migrations/InitialMigration
+2. If ts-node is missing 
+    npm install ts-node tsconfig-paths --save-dev
+3. Run Migration 
+    npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli migration:run -d src/data-source.ts
+4. If using compiled JS file then  
+    npx typeorm migration:run -d dist/data-source.js
+5. Verify Migration 
+    npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli migration:show -d src/data-source.ts 
