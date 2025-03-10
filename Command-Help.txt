@@ -8,3 +8,5 @@ Commands
     npx typeorm migration:run -d dist/data-source.js
 5. Verify Migration 
     npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli migration:show -d src/data-source.ts 
+6. Seed  Database
+    npx ts-node src/seeds/index.ts

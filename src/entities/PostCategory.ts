@@ -1,7 +1,8 @@
-import { Entity,PrimaryGeneratedColumn,Column } from 'typeorm'
+import { Entity,PrimaryGeneratedColumn,Column, OneToMany } from 'typeorm'
+import { Post } from './Post';
 
 @Entity()
-export class NewsCategory{
+export class PostCategory{
 
     @PrimaryGeneratedColumn()
     id: Number =0;
@@ -20,4 +21,7 @@ export class NewsCategory{
 
     @Column()
     IsActive : boolean = false;
+
+    @OneToMany(() => Post, post => post.Category)
+    posts! : Post[];
 }

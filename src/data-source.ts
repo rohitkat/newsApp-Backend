@@ -1,6 +1,8 @@
 import "reflect-metadata";
 import { DataSource } from 'typeorm';
 import { User } from "./entities/User";
+import { Post } from "./entities/Post";
+import { PostCategory } from "./entities/PostCategory";
 
 const AppDataSource = new DataSource({
   type: 'mysql',
@@ -9,7 +11,7 @@ const AppDataSource = new DataSource({
   username: 'root',
   password: 'techno@123',
   database: 'newsdb',
-  entities: [User],
+  entities: [User,Post, PostCategory],
   migrations: ["src/migrations/**/*.ts"],
   synchronize: false, // Note: Set to false in production
 

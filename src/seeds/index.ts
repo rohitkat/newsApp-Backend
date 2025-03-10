@@ -1,4 +1,5 @@
 import AppDataSource  from '../data-source'
+import { postCategorySeeder } from './postCategorySeeder';
 import {seedUsers} from './userSeeder'
 
 const seedDatabase = async() =>{
@@ -9,6 +10,9 @@ const seedDatabase = async() =>{
 
         await seedUsers(AppDataSource);
         console.log("Database seeded with Users");
+
+        await postCategorySeeder(AppDataSource);
+        console.log("Database seeded with Post Categories");
 
         process.exit(0);
 

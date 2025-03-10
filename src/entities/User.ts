@@ -1,6 +1,7 @@
-import { Entity,PrimaryGeneratedColumn,Column } from 'typeorm'
+import { Entity,PrimaryGeneratedColumn,Column, OneToMany } from 'typeorm'
 import { UserRole } from '../types/userRole';
 import { IsEmail, Length } from 'class-validator';
+import { Post } from './Post';
 
 
 @Entity()
@@ -32,4 +33,7 @@ export class User{
 
     @Column()
     isActive : boolean = true;
+
+    @OneToMany(() => Post, post => post.Author)
+    posts! : Post[];
 }
