@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 
 const app = express();
 app.use(express.json());
-app.use('/api/users',userRoutes);
+app.use('/api',userRoutes);
 dotenv.config();
 app.get("/", (req: Request, res: Response) => {
     res.send("Hello, TypeScript with Node.js!");
