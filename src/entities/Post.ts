@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, JoinColumn, OneToOne, ManyToOne } from 'typeorm'
+import {Entity, PrimaryGeneratedColumn, Column, JoinColumn, OneToOne, ManyToOne} from 'typeorm'
 import { PostCategory } from './PostCategory';
 import { User } from './User';
 
@@ -8,10 +8,10 @@ export class Post{
     @PrimaryGeneratedColumn()
     id : Number = 0;
 
-    @Column()
+    @Column({type:'varchar', length:250})
     CaptionText : string = "";
     
-    @Column()
+    @Column({type :'text'})
     Description : string = "";
 
     @Column()

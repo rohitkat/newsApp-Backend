@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-//import { User } from '../types/userType';
 import AppDataSource from "../data-source";
 import { User } from "../entities/User";
 import { comparePassword, hashPassword } from "../Authentication/PasswordSecure";
