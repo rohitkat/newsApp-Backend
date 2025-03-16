@@ -15,8 +15,10 @@ router.put("/users/update", authenticateJWT, userController.updateUser);
 router.get('/menus/',postCategoryController.getCategoryMenu);
 
 router.get('/posts', postController.getAllPosts);
+router.get('/postsbycategory', postController.getPostsByCategory);
 router.post('/posts', authenticateJWT, postController.createPost);
 router.put('/posts', authenticateJWT, postController.updatePost);
+router.patch('/posts/updateDisplayOrder',authenticateJWT, postController.updateDisplayOrder);
 
 
 export default router;

@@ -23,7 +23,7 @@ class postController {
       });
       res.status(200).json({ message: "", posts: posts });
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Error!" });
+      res.status(500).json({ message: "Internal Server Error!", error : error });
     }
   };
 
@@ -36,12 +36,12 @@ class postController {
           {
             IsActive: true,
             ActiveTillDate: MoreThan(new Date()),
-            Category: ILike(`%${category.toLowerCase()}%`),
+            Category: { Title: ILike(`%${category.toLowerCase()}%`)},
           },
           {
             IsActive: true,
             ActiveTillDate: IsNull(),
-            Category: ILike(`%${category.toLowerCase()}%`),
+            Category: { Title: ILike(`%${category.toLowerCase()}%`)},
           }, // To include posts without an expiry date
         ],
         order: {
@@ -50,7 +50,7 @@ class postController {
       });
       res.status(200).json({ message: "", posts: posts });
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Error!" });
+      res.status(500).json({ message: "Internal Server Error!", error : error });
     }
   };
 
@@ -122,12 +122,36 @@ class postController {
           res.status(200).json({message : "Post Updated Successfull!"});
         }
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Error!" });
+      res.status(500).json({ message: "Internal Server Error!" , error : error});
     }
   }
   
-  
-  
+  public updateDisplayOrder = async(req : AuthRequest, res: Response) =>{
+    try{
+      const posts = req.body;
+      const postRepository = AppDataSource.getRepository(Post);
+
+      if (!Array.isArray(posts)) {
+         res.status(400).json({ message: 'Invalid input format' });
+      }
+
+      for(const postOrder of posts) {
+        // console.log("Post id - ", postOrder.id);
+        // console.log("Display Order - ", postOrder.DisplayOrder);
+        const post = await postRepository.findOne({where : {id : postOrder.id}});
+        if(!post){
+          res.status(404).json({message : "Post Id not found",id : postOrder.id});
+        }else{
+          post.DisplayOrder = postOrder.DisplayOrder;
+          await postRepository.save(post);
+        }
+      }
+
+      res.status(200).json({message : "Display Orders Updated Successfull!"});
+    }catch(error){
+      res.status(500).json({ message: "Internal Server Error!", error : error });
+    }
+  }
 }
 
 export default new postController();
