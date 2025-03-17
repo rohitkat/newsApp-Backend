@@ -2,10 +2,19 @@ import express,{Request,Response} from "express";
 import userRoutes from './routes/userRoutes'
 import AppDataSource from './data-source'
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 const app = express();
 app.use(express.json());
+app.use(
+  cors({
+    origin: 'http://localhost:3000', // Allow frontend origin
+    credentials: true, // Allow cookies and authentication headers
+  })
+);
 app.use('/api',userRoutes);
+
+
 dotenv.config();
 app.get("/", (req: Request, res: Response) => {
     res.send("Hello, TypeScript with Node.js!");
