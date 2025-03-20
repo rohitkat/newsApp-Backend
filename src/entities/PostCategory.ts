@@ -11,6 +11,9 @@ export class PostCategory{
     Title : string = "";
 
     @Column()
+    Url : string = "";
+
+    @Column()
     ParentCategoryId :Number = 0;
 
     @Column()

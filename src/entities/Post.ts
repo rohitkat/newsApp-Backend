@@ -1,6 +1,7 @@
 import {Entity, PrimaryGeneratedColumn, Column, JoinColumn, OneToOne, ManyToOne} from 'typeorm'
 import { PostCategory } from './PostCategory';
 import { User } from './User';
+import { PostListDetail } from './PostListDetail';
 
 @Entity()
 export class Post{
@@ -41,4 +42,7 @@ export class Post{
 
     @Column()
     IsActive:boolean = true;
+
+    @OneToOne(() => PostListDetail, (postListDetail) => postListDetail.Post)
+    PostListDetail! : PostListDetail 
 }
