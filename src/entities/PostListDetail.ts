@@ -16,7 +16,7 @@ export class PostListDetail{
     @ManyToOne(() => PostList, postList => postList.postListDetail)
     PostList! : PostList;
 
-    @OneToOne(() => Post)
+    @ManyToOne(() => Post)
     Post! : Post;
 
     @Column()

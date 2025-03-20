@@ -3,6 +3,7 @@ import userController from '../controllers/userController';
 import postCategoryController  from '../controllers/postCategoryController';
 import { authenticateJWT } from '../Authentication/Authenticate';
 import postController from '../controllers/postController';
+import postListController from '../controllers/postListContorller';
 
 const router = Router();
 
@@ -20,5 +21,5 @@ router.post('/posts', authenticateJWT, postController.createPost);
 router.put('/posts', authenticateJWT, postController.updatePost);
 router.patch('/posts/updateDisplayOrder',authenticateJWT, postController.updateDisplayOrder);
 
-
+router.get('/postlist',postListController.GetPostList);
 export default router;
