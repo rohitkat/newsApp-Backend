@@ -16,7 +16,7 @@ class postListController{
             const postList = await postListRepository.find({
                 where : {Title : listName?.toString()
                 },
-                relations: ['postListDetail', 'postListDetail.Post']
+                relations: ['postListDetail', 'postListDetail.Post','postListDetail.Post.Category' ]
             });
     
             res.status(200).json({message : "Post List returned Successfull!", postList : postList});
