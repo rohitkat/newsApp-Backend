@@ -10,6 +10,9 @@ export class Post{
     id : Number = 0;
 
     @Column({type:'varchar', length:250})
+    Title : string = "";
+
+    @Column({type:'varchar', length:250})
     CaptionText : string = "";
     
     @Column({type :'text'})

@@ -27,6 +27,20 @@ class postController {
     }
   };
 
+  public getPostById = async(req : Request, res : Response) => {
+    try{
+      const { postId } = req.body;
+      const postRepo = AppDataSource.getRepository(Post);
+      const post = await postRepo.findOne({
+        where : { id : postId}
+      });
+
+      res.status(200).json({ message: "Post returned Successfully!", post: post });
+    } catch (error) {
+      res.status(500).json({ message: "Internal Server Error!", error : error });
+    }
+  }
+
   public getPostsByCategory = async (req: Request, res: Response) => {
     try {
       const { category } = req.body;

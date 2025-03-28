@@ -16,6 +16,7 @@ router.put("/users/update", authenticateJWT, userController.updateUser);
 router.get('/menus/',postCategoryController.getCategoryMenu);
 
 router.get('/posts', postController.getAllPosts);
+router.get('/postbyid', postController.getPostById);
 router.get('/postsbycategory', postController.getPostsByCategory);
 router.post('/posts', authenticateJWT, postController.createPost);
 router.put('/posts', authenticateJWT, postController.updatePost);
