@@ -29,7 +29,7 @@ class postController {
 
   public getPostById = async(req : Request, res : Response) => {
     try{
-      const { postId } = req.body;
+      const postId = Number(req.query.postId) || 0;
       const postRepo = AppDataSource.getRepository(Post);
       const post = await postRepo.findOne({
         where : { id : postId}
